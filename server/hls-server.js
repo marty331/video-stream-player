@@ -1,4 +1,6 @@
+require('dotenv').config();
 const http = require('http');
+
 var fs = require('fs');
 
 const PORT = 4000;
@@ -18,7 +20,8 @@ http.createServer(function (request, response) {
         return;
     }
 
-    var filePath = '/Users/marty331/Movies/videos/second' + request.url;
+    console.log("movie path ", process.env.MOVIE_PATH)
+    var filePath = process.env.MOVIE_PATH + request.url;
     console.log(filePath);;
     fs.readFile(filePath, function (error, content) {
         response.writeHead(200, { 'Access-Control-Allow-Origin': '*' });
